@@ -16,22 +16,34 @@ Follow standard Redmine procedure, including database migrations
 
 As an administrator, enter the plugin configuration page and flag the applications you want to let the users use.
 
+![Applications](screenshots/AdminSettings.png)
+
 As an user, you can find a new 'Applications' entry in the top-left menu, which allows to select applications wanted into the application menu.
 
-Plugins that add entries into the application menu in the standard Redmine way keep a fixed, non configurable entry
+![Applications](screenshots/UserSettings.png)
+
+Plugins that add entries into the application menu in the standard Redmine way keep a fixed, non configurable entry.
 
 ## How to create a new managed app
 
-* name your plugin 'redmine_app_<appname>'. Note that this plugin has a double underscore between 'app' and 'space', so your plugin will be always loaded after this, which is mandatory.
-* this plugin creates two new routing verbs, 'application' for apps with a controller, and 'block' for simple partials to display as apps.
-  These verbs create routes from 'apps/<name>' that must be loaded _before_ this plugin load 'apps/:tab' in order not to be ignored.
-  Therefore, you must declare your app routing within init.rb into a section like the following:
+* name your plugin 'redmine_app_&lt;appname&gt;'. 
+  
+  Note that this plugin is named with a double underscore between 'app' and 'space', so your plugin will be always loaded after this, which is mandatory.
+* this plugin creates two new routing verbs, '_application_' for apps with a controller, and '_block_' for simple partials to display as apps.
+  
+  These verbs create routes from 'apps/&lt;name&gt;' that must be loaded _before_ this plugin load 'apps/:tab' in order not to be ignored.
+  
+  Therefore, you must declare your app routing within init.rb into a section like the following examples:
+
+  ```ruby
      RedmineApp::Application.routes.prepend do
         application 'name_of_app', :to => 'controller#method', :via => get
         block 'name_of_app', 'partial_path'
      end
+  ```
+  
   The syntax is similar to that of the 'match' verb, with some simplifications. Blocks restrict to the get method as default if :via is not specified.
 * create translations:
-** label_<name> is the text listed in the applications menu
-** label_<name>_description is the help text displayed in the app selection pages
+  * label_&lt;name_of_app&gt; is the applications menu entry
+  * label_&lt;name_of_app&gt;_description is the help text displayed in the app selection pages
 
