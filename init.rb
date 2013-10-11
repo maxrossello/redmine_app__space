@@ -5,7 +5,7 @@ Rails.logger.info 'Starting Application Space plugin for Redmine'
 Redmine::Plugin.register :redmine_app__space do
   name 'Redmine Application Space plugin'
   author 'Massimo Rossello'
-  description 'Creates a global application space with accessible sliding areas'
+  description 'Creates a global application space with configurable application menu entries'
   version '0.0.1'
   url 'https://github.com/maxrossello/redmine_app__space.git'
   author_url 'https://github.com/maxrossello'
