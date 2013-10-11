@@ -21,7 +21,7 @@ module AppspaceRoutesPatch
       Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
       Setting.plugin_redmine_app__space['available'] << { :name => name, :partial => partial }
 
-      options[:via] = :get
+      options[:via] = :get if options[:via].nil?
       options[:to] = "appspace#index"
       options[:tab] = name
 
