@@ -1,0 +1,25 @@
+#admin-menu a.appSpace { background-image:url('../images/app_icon.png'); }
+
+.application {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-left: 10px;
+}
+
+.application a, .application .title {
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 16px;
+}
+
+.application .checkbox {
+    vertical-align: top;
+}
+
+.application .description {
+    margin-left: 25px;
+}
+
+#button {
+    margin-left: 10px;
+}

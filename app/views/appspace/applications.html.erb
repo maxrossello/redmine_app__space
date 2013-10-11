@@ -1,0 +1,45 @@
+
+
+<%
+   locals = { :user => @user }
+
+   if @application.nil? %>
+    <h2><%= l(:label_applications) %></h2>
+
+    <%= form_tag ({:action => 'update'}) do %>
+         <% user = User.current %>
+         <%= hidden_field_tag 'user_id', user.id %>
+         <% @tabs.each do |tab|
+            if Setting.plugin_redmine_app__space['enabled'].include?(tab[:name]) %>
+              <div class="application root <%= cycle('odd', 'even')%>">
+                  <span class="checkbox">
+                    <%= check_box_tag "apps[]", tab[:name], user.apps.include?(tab[:name])  %>
+                  </span>
+                  <span>
+                    <%= link_to l("label_#{tab[:name]}".to_sym), url_for(:controller => params[:controller], :action => params[:action], :tab => tab[:name]) %>
+                      <div class="description">
+                        <%  if tab[:description].nil? %>
+                        <%=   l("label_#{tab[:name]}_description".to_sym) %>
+                        <%  else %>
+                        <%=   tab[:description] %>
+                        <%  end %>
+                      </div>
+                  </span>
+              </div>
+         <% end %>
+        <% end %>
+         <%= submit_tag l(:button_save), :id => 'button' %>
+    <% end %>
+<% else
+     tab = @tabs[@index]
+%>
+     <h2><%= l("label_#{tab[:name]}".to_sym) %></h2>
+<%
+     locals.merge!(tab[:locals]) unless tab[:locals].nil?
+     view = tab[:partial].nil? ? "appspace/blocks/#{tab[:name]}" : tab[:partial]
+%>
+
+<%=  render :partial => "#{view}", :locals => locals %>
+<% end %>
+
+<% html_title(l(:label_applications)) %>

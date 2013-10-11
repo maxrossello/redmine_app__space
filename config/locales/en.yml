@@ -1,0 +1,21 @@
+# English strings go here for Rails i18n
+en:
+  label_applications: "Applications"
+
+  # standard blocks
+  label_issuesreportedbyme: "Reported issues"
+  label_timelog: "Spent time"
+  label_issuesassignedtome: "Assigned issues"
+  label_issueswatched: "Watched issues"
+
+
+  # descriptions
+  label_news_description: "Latest news gathered from all the projects that the user can access to"
+  label_example_description: "An example application"
+  label_calendar_description: "Calendar of the current week"
+  label_issuesassignedtome_description: "Issues assigned to you"
+  label_issuesreportedbyme_description: "Issues that you created"
+  label_issueswatched_description: "Issues that you are watching"
+  label_timelog_description: "Spent time reports"
+  label_activity_description: "Overall activities listing"
+

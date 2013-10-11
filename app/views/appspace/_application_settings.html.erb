@@ -1,0 +1,33 @@
+
+<%
+   (settings['available'] || []).uniq{ |x| x[:name] }.sort {
+           |x,y| l("label_#{x[:name]}".to_sym) <=> l("label_#{y[:name]}".to_sym)
+   }.each do |tab|
+     name = tab[:name]
+     Redmine::MenuManager.map('application_menu').delete(name.to_sym)
+     Redmine::MenuManager.map('application_menu').push(name, { :controller => 'appspace', :action => 'index', :tab => name },
+         :caption => "label_#{name}".to_sym,
+         :if => lambda {
+                     |p| Setting.plugin_redmine_app__space['enabled'].include?(name.to_s) and User.is_app_visible?(name.to_s)
+             }) if settings['enabled'].include?(tab[:name])
+%>
+       <div class="application root <%= cycle('odd', 'even')%>">
+         <%= hidden_field_tag "settings[available][][name]", tab[:name] unless tab[:name].nil? %>
+         <%= hidden_field_tag "settings[available][][partial]", tab[:partial] unless tab[:partial].nil? %>
+         <span class="checkbox">
+            <%= check_box_tag "settings[enabled][]", tab[:name], settings['enabled'].include?(tab[:name])  %>
+          </span>
+          <span>
+            <span class="title">
+              <%= l("label_#{tab[:name]}".to_sym) %>
+            </span>
+            <div class="description">
+              <%  if tab[:description].nil? %>
+                  <%=   l("label_#{tab[:name]}_description".to_sym) %>
+              <%  else %>
+                  <%=   tab[:description] %>
+              <%  end %>
+            </div>
+          </span>
+       </div>
+<% end %>

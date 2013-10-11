@@ -1,0 +1,20 @@
+# Italian strings go here for Rails i18n
+it:
+  label_applications: "Applicazioni"
+
+  # standard blocks
+  label_issuesreportedbyme: "Mie attività"
+  label_timelog: "Tempo speso"
+  label_documents: "Documenti"
+  label_issuesassignedtome: "Attività assegnate"
+  label_issueswatched: "Attività osservate"
+
+  # descriptions
+  label_news_descriptions: "Le ultime notizie raccolte dai progetti a cui l'utente può accedere"
+  label_example_description: "Una applicazione di esempio"
+  label_calendar_description: "Calendario della settimana corrente"
+  label_issuesassignedtome_description: "Attività assegnate a te"
+  label_issuesreportedbyme_description: "Attività che hai creato"
+  label_issueswatched_description: "Attività che stai osservando"
+  label_timelog_description: "Reportistica del tempo speso sulle attività"
+  label_activity_description: "Diario generale delle attività"
