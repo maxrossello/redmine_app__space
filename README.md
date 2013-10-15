@@ -43,6 +43,14 @@ Plugins that add entries into the application menu in the standard Redmine way k
   ```
   
   The syntax is similar to that of the 'match' verb, with some simplifications. Blocks restrict to the get method as default if :via is not specified.
+
+  An additional option _:if_ is added in order to add further filters to application visibility, for example, when the admin can enable the app but some further user permission is needed. The option needs a callback with one parameter (the user).
+  Example:
+
+  ```ruby
+    application 'name_of_app', :to => 'controller#method', :via => get, :if => lambda { |user| ..... }
+  ```
+
 * create translations:
   * label_&lt;name_of_app&gt; is the applications menu entry
   * label_&lt;name_of_app&gt;_description is the help text displayed in the app selection pages

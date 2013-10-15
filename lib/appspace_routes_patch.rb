@@ -14,6 +14,9 @@ module AppspaceRoutesPatch
       Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
       Setting.plugin_redmine_app__space['available'] << { :name => name }
 
+      User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
+      options.delete(:if)
+
       match("/apps/#{name}", options)
     end
 
@@ -24,6 +27,9 @@ module AppspaceRoutesPatch
       options[:via] = :get if options[:via].nil?
       options[:to] = "appspace#index"
       options[:tab] = name
+
+      User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
+      options.delete(:if)
 
       match("/apps/#{name}", options)
     end

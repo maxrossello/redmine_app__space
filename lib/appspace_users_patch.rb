@@ -23,12 +23,25 @@ module AppspaceUsersPatch
   end
 
   module ClassMethods
+    @@visible_callbacks = {}
 
-    def is_app_visible?(value)
-      user = User.current
+    def is_app_visible?(name, user=User.current)
       return false if user.is_a?(AnonymousUser)
-      user.apps.include?(value)
+
+      return false unless is_app_enabled?(name, user)
+
+      user.apps.include?(name)
     end
+
+    def is_app_enabled?(name, user=User.current)
+      return false unless @@visible_callbacks[name].nil? or @@visible_callbacks[name].call(user)
+      Setting.plugin_redmine_app__space['enabled'].include?(name)
+    end
+
+    def add_enabled_filter(app, func)
+      @@visible_callbacks[app] = func
+    end
+
 
   end
 end

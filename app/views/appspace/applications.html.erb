@@ -10,7 +10,7 @@
          <% user = User.current %>
          <%= hidden_field_tag 'user_id', user.id %>
          <% @tabs.each do |tab|
-            if Setting.plugin_redmine_app__space['enabled'].include?(tab[:name]) %>
+            if User.is_app_enabled?(tab[:name], user) %>
               <div class="application root <%= cycle('odd', 'even')%>">
                   <span class="checkbox">
                     <%= check_box_tag "apps[]", tab[:name], user.apps.include?(tab[:name])  %>
