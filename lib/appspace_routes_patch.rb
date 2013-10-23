@@ -10,12 +10,24 @@ module AppspaceRoutesPatch
 
   module InstanceMethods
 
+    def update_menu(name)
+      Redmine::MenuManager.map('application_menu').delete(name.to_sym)
+      Redmine::MenuManager.map('application_menu').push(name, { :controller => 'appspace', :action => 'index', :tab => name },
+                :caption => "label_#{name}".to_sym,
+                :if => lambda {
+                    |p| Setting.plugin_redmine_app__space['enabled'].include?(name.to_s) and User.is_app_visible?(name.to_s)
+                }) if Setting.plugin_redmine_app__space['enabled'].include?(name)
+      Redmine::MenuManager.items('application_menu').children.sort!{ |x,y| ::I18n.t("label_#{x.name}") <=> ::I18n.t("label_#{y.name}") }
+    end
+
     def application(name, options=nil)
       Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
       Setting.plugin_redmine_app__space['available'] << { :name => name }
 
       User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
       options.delete(:if)
+
+      update_menu(name)
 
       match("/apps/#{name}", options)
     end
@@ -30,6 +42,8 @@ module AppspaceRoutesPatch
 
       User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
       options.delete(:if)
+
+      update_menu(name)
 
       match("/apps/#{name}", options)
     end

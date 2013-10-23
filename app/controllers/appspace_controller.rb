@@ -12,7 +12,7 @@ class AppspaceController < ApplicationController
   def index
     @user = User.current if @user.nil?
     @tabs = (Setting.plugin_redmine_app__space['available'] || []).uniq{ |x| x[:name] }
-    @tabs.sort! { |x,y| l("label_#{x[:name]}".to_sym) <=> l("label_#{y[:name]}".to_sym) }
+    @tabs.sort! { |x,y| l("label_#{x[:name]}") <=> l("label_#{y[:name]}") }
     @tabs.each do |tab|
       name = tab[:name]
       Redmine::MenuManager.map('application_menu').delete(name.to_sym)
@@ -20,7 +20,7 @@ class AppspaceController < ApplicationController
           :caption => "label_#{name}".to_sym,
           :if => lambda {
               |p| Setting.plugin_redmine_app__space['enabled'].include?(name.to_s) and User.is_app_visible?(name.to_s)
-          }) if Setting.plugin_redmine_app__space['enabled'].include?(tab[:name])
+          }) if Setting.plugin_redmine_app__space['enabled'].include?(name)
     end
 
     @application = params[:tab] if @application.nil?
