@@ -19,7 +19,7 @@ class AppspaceController < ApplicationController
       Redmine::MenuManager.map('application_menu').push(name, { :controller => 'appspace', :action => 'index', :tab => name },
           :caption => "label_#{name}".to_sym,
           :if => lambda {
-              |p| Setting.plugin_redmine_app__space['enabled'].include?(name.to_s) and User.is_app_visible?(name.to_s)
+              |p| User.is_app_visible?(name.to_s)
           }) if Setting.plugin_redmine_app__space['enabled'].include?(name)
     end
 
