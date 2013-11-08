@@ -14,7 +14,8 @@ Follow standard Redmine procedure, including database migrations
 
 ## Usage
 
-As an administrator, enter the plugin configuration page and flag the applications you want to let the users use.
+As an administrator, enter the plugin configuration page and flag the applications you want to enable.
+You can select a group of authorized users per each application.
 
 ![Applications](screenshots/AdminSettings.png)
 
