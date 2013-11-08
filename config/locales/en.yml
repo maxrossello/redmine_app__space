@@ -1,6 +1,10 @@
 # English strings go here for Rails i18n
 en:
   label_applications: "Applications"
+  label_application: "Application"
+  label_enabled: "Enabled"
+  label_auth_group: "Auth group"
+  label_everybody: "(everybody)"
 
   # standard blocks
   label_issuesreportedbyme: "Reported issues"

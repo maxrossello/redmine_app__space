@@ -1,4 +1,10 @@
-
+<table class="settings">
+  <thead class="app-header application">
+  <th class="title"><%=l(:label_enabled)%></th>
+  <th class="title"><%=l(:label_auth_group)%></th>
+  <th class="title"><%=l(:label_application)%></th>
+  </thead>
+  <tbody>
 <%
    (settings['available'] || []).uniq{ |x| x[:name] }.sort {
            |x,y| l("label_#{x[:name]}") <=> l("label_#{y[:name]}")
@@ -11,23 +17,28 @@
                      |p| User.is_app_visible?(name.to_s)
              }) if settings['enabled'].include?(name)
 %>
-       <div class="application root <%= cycle('odd', 'even')%>">
-         <%= hidden_field_tag "settings[available][][name]", tab[:name] unless tab[:name].nil? %>
+       <tr class="application root <%= cycle('odd', 'even')%>">
+         <%= hidden_field_tag "settings[available][][name]", name unless name.nil? %>
          <%= hidden_field_tag "settings[available][][partial]", tab[:partial] unless tab[:partial].nil? %>
-         <span class="checkbox">
-            <%= check_box_tag "settings[enabled][]", tab[:name], settings['enabled'].include?(tab[:name])  %>
-          </span>
-          <span>
+         <td class="checkbox">
+           <%= check_box_tag "settings[enabled][]", name, settings['enabled'].include?(name)  %>
+         </td>
+         <td>
+           <%= select_tag "settings[auth_group][#{name}]", options_from_collection_for_select(Group.active.all, "id", "lastname", settings['auth_group'][name]), :prompt => l(:label_everybody) %>
+         </td>
+         <td>
             <span class="title">
-              <%= l("label_#{tab[:name]}".to_sym) %>
+              <%= l("label_#{name}".to_sym) %>
             </span>
-            <div class="description">
-              <%  if tab[:description].nil? %>
-                  <%=   l("label_#{tab[:name]}_description".to_sym) %>
-              <%  else %>
-                  <%=   tab[:description] %>
-              <%  end %>
-            </div>
-          </span>
-       </div>
+           <div class="description">
+             <%  if tab[:description].nil? %>
+                 <%=   l("label_#{name}_description".to_sym) %>
+             <%  else %>
+                 <%=   tab[:description] %>
+             <%  end %>
+           </div>
+         </td>
+       </tr>
 <% end %>
+</tbody>
+</table>

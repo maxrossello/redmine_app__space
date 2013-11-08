@@ -35,7 +35,10 @@ module AppspaceUsersPatch
 
     def is_app_enabled?(name, user=User.current)
       return false unless @@visible_callbacks[name].nil? or @@visible_callbacks[name].call(user)
-      Setting.plugin_redmine_app__space['enabled'].include?(name)
+      Setting.plugin_redmine_app__space['enabled'].include?(name) and
+          Setting.plugin_redmine_app__space['auth_group'][name] and
+          (Setting.plugin_redmine_app__space['auth_group'][name].empty? or
+              user.is_or_belongs_to? Group.find(Setting.plugin_redmine_app__space['auth_group'][name]))
     end
 
     def add_enabled_filter(app, func)

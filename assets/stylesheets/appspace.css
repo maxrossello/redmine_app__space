@@ -16,8 +16,23 @@
     vertical-align: top;
 }
 
+.settings .checkbox {
+    vertical-align: middle;
+    text-align: right;
+}
+
 .application .description {
     margin-left: 25px;
+}
+
+.app-header {
+    text-align: left;
+    color: grey;
+}
+
+.app-header th, .application td {
+    padding-right: 15px;
+    padding-bottom: 10px;
 }
 
 #button {

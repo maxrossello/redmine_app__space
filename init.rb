@@ -23,7 +23,8 @@ Redmine::Plugin.register :redmine_app__space do
 
   settings(:default => {
       'enabled' => [],
-      'available' => []
+      'available' => [],
+      'auth_group' => [],
     },
     :partial => 'appspace/application_settings'
   )

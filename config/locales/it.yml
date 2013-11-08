@@ -1,6 +1,10 @@
 # Italian strings go here for Rails i18n
 it:
   label_applications: "Applicazioni"
+  label_application: "Applicazione"
+  label_enabled: "Attivo"
+  label_auth_group: "Autorizzati"
+  label_everybody: "(tutti)"
 
   # standard blocks
   label_issuesreportedbyme: "Mie attività"
