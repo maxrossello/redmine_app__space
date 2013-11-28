@@ -1,3 +1,4 @@
+
 <table class="settings">
   <thead class="app-header application">
   <th class="title"><%=l(:label_enabled)%></th>
@@ -6,6 +7,7 @@
   </thead>
   <tbody>
 <%
+
    (settings['available'] || []).uniq{ |x| x[:name] }.sort {
            |x,y| l("label_#{x[:name]}") <=> l("label_#{y[:name]}")
    }.each do |tab|
@@ -42,3 +44,4 @@
 <% end %>
 </tbody>
 </table>
+<%= hidden_field_tag "settings[enabled][]", "__dummy__" %>
