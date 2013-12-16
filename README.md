@@ -56,3 +56,9 @@ Plugins that add entries into the application menu in the standard Redmine way k
   * label_&lt;name_of_app&gt; is the applications menu entry
   * label_&lt;name_of_app&gt;_description is the help text displayed in the app selection pages
 
+## Compatible applications
+
+Beyond several partials available in Redmine core, other dedicated applications are available:
+
+* [Redmine Timesheets Application](https://github.com/maxrossello/redmine_app_timesheets): A true timesheet plugin using orders, not bound to timelogs over issues
+
