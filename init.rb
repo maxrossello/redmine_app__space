@@ -6,7 +6,7 @@ Redmine::Plugin.register :redmine_app__space do
   name 'Redmine Application Space plugin'
   author 'Massimo Rossello'
   description 'Creates a global application space with configurable application menu entries'
-  version '1.0.0'
+  version '1.0.1'
   url 'https://github.com/maxrossello/redmine_app__space.git'
   author_url 'https://github.com/maxrossello'
   requires_redmine :version_or_higher => '2.0.0'
