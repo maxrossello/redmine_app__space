@@ -14,7 +14,7 @@ it:
   label_issueswatched: "Attività osservate"
 
   # descriptions
-  label_news_descriptions: "Le ultime notizie raccolte dai progetti a cui l'utente può accedere"
+  label_news_descriptions: "Le ultime notizie raccolte dai contesti a cui l'utente può accedere"
   label_calendar_description: "Calendario della settimana corrente"
   label_issuesassignedtome_description: "Attività assegnate a te"
   label_issuesreportedbyme_description: "Attività che hai creato"

@@ -1,3 +1,4 @@
+require_dependency 'appspace_users_patch'
 
 class AppspaceController < ApplicationController
   unloadable
@@ -18,7 +19,7 @@ class AppspaceController < ApplicationController
       Redmine::MenuManager.map('application_menu').delete(name.to_sym)
       Redmine::MenuManager.map('application_menu').push(name, { :controller => 'appspace', :action => 'index', :tab => name },
           :caption => "label_#{name}".to_sym,
-          :if => lambda {
+          :if => Proc.new {
               |p| User.respond_to? :is_app_visible? and User.is_app_visible?(name.to_s)
           }) if Setting.plugin_redmine_app__space['enabled'].include?(name)
     end

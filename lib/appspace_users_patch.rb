@@ -50,3 +50,6 @@ module AppspaceUsersPatch
   end
 end
 
+unless User.included_modules.include?(AppspaceUsersPatch)
+  User.send(:include, AppspaceUsersPatch)
+end

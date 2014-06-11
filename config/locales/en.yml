@@ -14,7 +14,7 @@ en:
 
 
   # descriptions
-  label_news_description: "Latest news gathered from all the projects that the user can access to"
+  label_news_description: "Latest news gathered from all the workspaces that the user can access to"
   label_calendar_description: "Calendar of the current week"
   label_issuesassignedtome_description: "Issues assigned to you"
   label_issuesreportedbyme_description: "Issues that you created"

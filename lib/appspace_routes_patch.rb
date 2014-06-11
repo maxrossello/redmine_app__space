@@ -1,3 +1,5 @@
+require_dependency 'appspace_users_patch'
+
 module AppspaceRoutesPatch
 
   def self.included(base)
@@ -14,7 +16,7 @@ module AppspaceRoutesPatch
       Redmine::MenuManager.map('application_menu').delete(name.to_sym)
       Redmine::MenuManager.map('application_menu').push(name, { :controller => 'appspace', :action => 'index', :tab => name },
                 :caption => "label_#{name}".to_sym,
-                :if => lambda {
+                :if => Proc.new {
                     |p| User.respond_to? :is_app_visible? and User.is_app_visible?(name.to_s)
                 }) if Setting.plugin_redmine_app__space['enabled'].include?(name)
       Redmine::MenuManager.items('application_menu').children.sort!{ |x,y| ::I18n.t("label_#{x.name}") <=> ::I18n.t("label_#{y.name}") }
@@ -51,3 +53,6 @@ module AppspaceRoutesPatch
   end
 end
 
+unless ActionDispatch::Routing::Mapper.included_modules.include?(AppspaceRoutesPatch)
+  ActionDispatch::Routing::Mapper.send(:include, AppspaceRoutesPatch)
+end
