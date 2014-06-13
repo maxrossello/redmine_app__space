@@ -23,31 +23,37 @@ module AppspaceRoutesPatch
     end
 
     def application(name, options=nil)
-      Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
-      Setting.plugin_redmine_app__space['available'] << { :name => name }
+      begin
+        Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
+        Setting.plugin_redmine_app__space['available'] << { :name => name }
+  
+        User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
+        options.delete(:if)
+  
+        update_menu(name)
 
-      User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
-      options.delete(:if)
-
-      update_menu(name)
-
-      match("/apps/#{name}", options)
+        match("/apps/#{name}", options)
+      rescue
+      end
     end
 
     def block(name, partial, options={})
-      Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
-      Setting.plugin_redmine_app__space['available'] << { :name => name, :partial => partial }
-
-      options[:via] = :get if options[:via].nil?
-      options[:to] = "appspace#index"
-      options[:tab] = name
-
-      User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
-      options.delete(:if)
-
-      update_menu(name)
-
-      match("/apps/#{name}", options)
+      begin
+        Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
+        Setting.plugin_redmine_app__space['available'] << { :name => name, :partial => partial }
+  
+        options[:via] = :get if options[:via].nil?
+        options[:to] = "appspace#index"
+        options[:tab] = name
+  
+        User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
+        options.delete(:if)
+  
+        update_menu(name)
+  
+        match("/apps/#{name}", options)
+      rescue
+      end
     end
 
   end
