@@ -1,6 +1,6 @@
 # Redmine Application Space
 
-Tested with redmine 2.3.2, compatible with 2.x
+Tested with redmine 2.3.2, 2.4.2, 2.5.1 compatible with 2.x
 
 Enhance Redmine application menu (the one that is displayed when browsing outside of projects) with dynamic configurability options.
 * Administrators can select the set of applications available
