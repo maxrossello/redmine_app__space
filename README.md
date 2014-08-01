@@ -12,6 +12,10 @@ Both full controllers and partials (e.g. the my/blocks views) can be made an app
 
 Follow standard Redmine procedure, including database migrations
 
+    cd {redmine root}
+    git clone https://github.com/maxrossello/redmine_app__space.git plugins/redmine_app__space
+    RAILS_ENV=production rake redmine:plugins:migrate
+
 ## Usage
 
 As an administrator, enter the plugin configuration page and flag the applications you want to enable.
