@@ -1,0 +1,23 @@
+# Simplified Chinese strings go here for Rails i18n
+zh-cn:
+  label_applications: "应用"
+  label_application: "应用"
+  label_enabled: "启用"
+  label_auth_group: "认证组"
+  label_everybody: "(任何人)"
+
+  # standard blocks
+  label_issuesreportedbyme: "已报告的问题"
+  label_timelog: "耗时"
+  label_issuesassignedtome: "已指派的问题"
+  label_issueswatched: "已跟踪的问题"
+
+
+  # descriptions
+  label_news_description: "最近的新闻"
+  label_calendar_description: "本周日历"
+  label_issuesassignedtome_description: "已指派给你的问题"
+  label_issuesreportedbyme_description: "你已报告的问题"
+  label_issueswatched_description: "你正在跟踪的问题"
+  label_timelog_description: "耗时报告"
+  label_activity_description: "完整活动清单"
