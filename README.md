@@ -1,6 +1,6 @@
 # Redmine Application Space
 
-Tested with redmine 2.6, compatible with 2.x
+Tested with redmine 2.3.2, 2.4.2, 2.5.1, 2.6 compatible with 2.x
 
 Enhance Redmine application menu (the one that is displayed when browsing outside of projects) with dynamic configurability options.
 * Administrators can select the set of applications available
@@ -13,6 +13,10 @@ Additionally, some selectors become handled via Selectize.js to ease input with 
 ## Installation
 
 Follow standard Redmine procedure, including database migrations
+
+    cd {redmine root}
+    git clone https://github.com/maxrossello/redmine_app__space.git plugins/redmine_app__space
+    RAILS_ENV=production rake redmine:plugins:migrate
 
 ## Usage
 
