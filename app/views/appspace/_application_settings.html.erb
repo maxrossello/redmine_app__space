@@ -26,7 +26,7 @@
            <%= check_box_tag "settings[enabled][]", name, settings['enabled'].include?(name)  %>
          </td>
          <td>
-           <%= select_tag "settings[auth_group][#{name}]", options_from_collection_for_select(Group.active.all, "id", "lastname", (settings['auth_group'][name] rescue {})), :prompt => l(:label_everybody) %>
+           <%= select_tag "settings[auth_group][#{name}]", options_from_collection_for_select(Group.active.all, "id", "lastname", (settings['auth_group'][name] rescue {})), :prompt => l(:label_everybody), :class => 'selectize' %>
          </td>
          <td>
             <span class="title">

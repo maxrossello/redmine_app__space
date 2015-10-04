@@ -1,12 +1,14 @@
 # Redmine Application Space
 
-Tested with redmine 2.3.2, compatible with 2.x
+Tested with redmine 2.6, compatible with 2.x
 
 Enhance Redmine application menu (the one that is displayed when browsing outside of projects) with dynamic configurability options.
 * Administrators can select the set of applications available
 * Users can select the applications they will see listed in the application menu
 
 Both full controllers and partials (e.g. the my/blocks views) can be made an application.
+
+Additionally, some selectors become handled via Selectize.js to ease input with long entry lists. Other plugins can benefit of Selectize in their views by using the 'selectize' html class.
 
 ## Installation
 
