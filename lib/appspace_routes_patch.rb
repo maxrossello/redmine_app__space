@@ -24,9 +24,12 @@ module AppspaceRoutesPatch
 
     def application(name, options=nil)
       begin
-        Setting.plugin_redmine_app__space['available'] = [] if Setting.plugin_redmine_app__space['available'].nil?
-        Setting.plugin_redmine_app__space['available'] << { :name => name }
-  
+        settings = Setting.plugin_redmine_app__space
+        avail = settings['available'] || []
+        avail << { :name => name } unless avail.include?({ :name => name })
+        settings['available'] = avail
+        Setting.plugin_redmine_app__space = settings
+
         User.add_enabled_filter(name, options[:if]) unless (options.nil? or options[:if].nil?)
         options.delete(:if)
   
