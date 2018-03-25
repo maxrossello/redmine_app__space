@@ -12,7 +12,7 @@ Redmine::Plugin.register :redmine_app__space do
   requires_redmine :version_or_higher => '2.0.0'
 
   menu :top_menu, :appSpace, { :controller => 'appspace', :action => 'index', :tab => nil }, :caption => :label_applications, :if => Proc.new { User.current.logged? }
-  menu :admin_menu, :appSpace, {:controller => 'settings', :action => 'plugin', :id => "redmine_app__space"}, :caption => :label_applications
+  menu :admin_menu, :appSpace, {:controller => 'settings', :action => 'plugin', :id => "redmine_app__space"}, :caption => :label_applications, :html => {:class => 'icon'}
 
 
 
